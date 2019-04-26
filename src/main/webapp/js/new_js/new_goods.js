@@ -219,7 +219,7 @@ function new_addcart(url,act,key){
 		//提交回购单操作
 		if(act	==	'sub'){
 			if(obj[0]	==	1){
-				gourl			=	url.replace("ajax/new_addcart","order/cart");;
+				gourl			=	url.replace("ajax/new_addcart","order/cart");
 				//location.href	=	gourl;
 				var check_url	=	url.replace("ajax/new_addcart","ajax/check_iflogin");
 				$.post(check_url,{},function(data){
@@ -228,7 +228,7 @@ function new_addcart(url,act,key){
 						login_pop(gourl);
 						return;
 					}else{
-						gourl			=	url.replace("ajax/new_addcart","order/cart");;
+						gourl			=	url.replace("ajax/new_addcart","order/cart");
 						location.href	=	gourl;
 						return;
 					}

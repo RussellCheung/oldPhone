@@ -38,9 +38,16 @@
             </collection>
         </collection>
     </resultMap>
+    <resultMap id="baseResultMap3" type="com.qianfeng.PO.TbDepreciation">
+        <id property="depreciationId" column="depreciation_id" javaType="java.lang.String"/>
+        <result property="stateId" column="state_id" javaType="java.lang.String"/>
+        <result property="depreciationPhoneId" column="depreciation_phone_id" javaType="java.lang.String"/>
+        <result property="depreciationAssessmentId" column="depreciation_assessment_id" javaType="java.lang.String"/>
+        <result property="depreciationPrice" column="depreciation_price" javaType="java.lang.Long"/>
+    </resultMap>
 
 
-    <!--查询所有品牌SQL-->
+    <!--查询所有品牌-->
     <select id="selectAllBrand" resultMap="baseResultMap">
         select brand_id,brand_name from tb_phone_brand
     </select>
@@ -68,5 +75,9 @@
             join tb_assessment_step a
             on s.state_assessment_id=a.assessment_id
             where  s.state_assessment_id=#{stateAssessmentId} and phone_id=#{phoneId}
+    </select>
+
+    <select id="selectPrice" resultMap="baseResultMap3">
+
     </select>
 </mapper>

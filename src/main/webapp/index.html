@@ -350,7 +350,7 @@
         //通过品牌筛选手机
         screen: function (brandId, brandName) {
             axios.get("http://localhost:8088/springmvc/oldphone/" + brandId)
-            .then(response => {this.phoneList = response.data,this.n=response.data.length,this.name=brandName})
+            .then(response => {this.phoneList = response.data,this.num=response.data.length,this.name=brandName})
             }
     },
     });

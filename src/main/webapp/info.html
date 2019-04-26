@@ -142,7 +142,7 @@
                     </ul>
                 </dd>
                 <div id="step1_nav" class="property_nav">
-                    <div id="btn_step1_next" class="btn_next">下一步</div>
+                    <div id="btn_step1_next" class="btn_next" v-on:click="step1_next">下一步</div>
                 </div>
             </dl>
         </div>
@@ -156,7 +156,6 @@
                     </div>
                     <ul>
                         <tempale  v-for="stateList in phoneInfo2.stateList">
-                            <!--<input type="hidden" name="desc_pid[]" value="944"/>-->
                             <input type="hidden" name="desc_id[]" :id="'desc_id_'+stateList.stateId" value="0"/>
                         <li v-bind:onClick="'item_click(this,'+stateList.stateId+')'" >
                             <div class="pro_div">
@@ -201,6 +200,7 @@
                                         </span>
                                     <span class="gou"></span>
                                 </div>
+                            </li>
                         </template>
                         <template v-else>
                             <input type="hidden" name="pj_id[]" :id="'pj_id_'+stateList.stateId" value="0"/>
@@ -272,11 +272,11 @@
         },
         mounted(){
             axios.get("http://localhost:8088/springmvc/oldphone/"+ phoneId +"/1")
-                 .then(response =>{this.phoneInfoList=response.data;}),
+                 .then(response =>{this.phoneInfoList=response.data}),
             axios.get("http://localhost:8088/springmvc/oldphone/"+ phoneId +"/2")
-                 .then(response =>{this.phoneInfoList2=response.data;}),
+                 .then(response =>{this.phoneInfoList2=response.data}),
             axios.get("http://localhost:8088/springmvc/oldphone/"+ phoneId +"/3")
-                 .then(response =>{this.phoneInfoList3=response.data;})
+                 .then(response =>{this.phoneInfoList3=response.data})
         }
     });
 </script>
