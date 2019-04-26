@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianfeng.mapper.BrandMapper">
+
+    <resultMap id="baseResultMap" type="com.qianfeng.PO.TbPhoneBrand">
+        <id property="brandId" column="brand_id" javaType="java.lang.String"/>
+        <result property="brandName" column="brand_name" javaType="java.lang.String"/>
+        <result property="typeId" column="type_id" javaType="java.lang.String"/>
+        <result property="reserved" column="reserved" javaType="java.lang.String"/>
+    </resultMap>
+
+
+    <resultMap id="baseResultMap1" type="com.qianfeng.PO.TbPhone">
+        <id property="phoneId" column="phone_id" javaType="java.lang.String"/>
+        <result property="phoneName" column="phone_name" javaType="java.lang.String"/>
+        <result property="phonePrice" column="phone_price" javaType="java.lang.Long"/>
+        <result property="phoneImg" column="phone_img" javaType="java.lang.String"/>
+        <result property="phoneBrandId" column="phone_brand_id" javaType="java.lang.String"/>
+    </resultMap>
+
+    <!--根据手机id查询评估信息-->
+
+    <resultMap id="baseResultMap2" type="com.qianfeng.PO.TbPhone">
+        <id property="phoneId" column="phone_id" javaType="java.lang.String"/>
+        <result property="phoneName" column="phone_name" javaType="java.lang.String"/>
+        <result property="phonePrice" column="phone_price" javaType="java.lang.Long"/>
+        <result property="phoneImg" column="phone_img" javaType="java.lang.String"/>
+        <result property="phoneBrandId" column="phone_brand_id" javaType="java.lang.String"/>
+        <collection property="stateParentList" column="phone_id" ofType="com.qianfeng.PO.TbStateParent">
+            <result property="parentId" column="parent_id"/>
+            <result property="parentName" column="parent_name"/>
+            <collection property="stateList" column="parent_id" ofType="com.qianfeng.PO.TbState">
+                <result property="stateId" column="state_id"/>
+                <result property="stateName" column="state_name"/>
+                <result property="stateDescribe" column="state_describe" />
+                <result property="stateAssessmentId" column="state_assessment_id"/>
+                <result property="depreciationPrice" column="depreciation_price" />
+            </collection>
+        </collection>
+    </resultMap>
+
+
+    <!--查询所有品牌SQL-->
+    <select id="selectAllBrand" resultMap="baseResultMap">
+        select brand_id,brand_name from tb_phone_brand
+    </select>
+
+    <!--查询所有手机-->
+    <select id="selectAllPhone" resultMap="baseResultMap1">
+        select * from tb_phone
+    </select>
+
+    <!--根据id筛选手机-->
+    <select id="selectPhone" resultMap="baseResultMap1">
+     select * from tb_phone where phone_brand_id=#{phoneBrandId}
+    </select>
+
+    <!--三步查询-->
+    <select id="selectPhoneInfo" resultMap="baseResultMap2">
+       select phone_id,phone_name,phone_img,phone_price,parent_id,parent_name,s.state_id,state_name,state_describe,state_assessment_id,depreciation_price
+            from  tb_depreciation d
+            join tb_state s
+            on d.state_id=s.state_id
+            join tb_phone p
+            on d.depreciation_phone_id=p.phone_id
+            join tb_state_parent sp
+            on s.state_parent_id=sp.parent_id
+            join tb_assessment_step a
+            on s.state_assessment_id=a.assessment_id
+            where  s.state_assessment_id=#{stateAssessmentId} and phone_id=#{phoneId}
+    </select>
+</mapper>

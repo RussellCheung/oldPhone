@@ -1,0 +1,282 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>麦淘乐 - 二手数码回收平台</title>
+    <meta name="keywords" content="iphone 7 iphone7 7 苹果7 苹果 7"/>
+    <meta name="description" content="iphone 7 iphone7 7 苹果7 苹果 7"/>
+    <meta name="baidu-site-verification" content="IpuQLFxZiC"/>
+    <meta name="chinaz-site-verification" content="081e7651-48c6-4c2f-a569-99321685eab1"/>
+    <meta name="applicable-device" content="pc">
+ <link href="http://www.qfedu.com/favicon.ico" type="image/x-icon" rel="Icon">
+    <link href="css/new_css/global.css" rel="stylesheet" type="text/css">
+    <script src="js/new_js/jquery-1.4.2.js" type="text/javascript"></script>
+    <script src="js/new_js/new_public.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    </script>
+    <link href="css/new_css/sub.css" rel="stylesheet" type="text/css">
+    <script src="js/public.js" type="text/javascript"></script>
+    <script src="js/new_js/menu.js" type="text/javascript"></script>
+    <script src="js/new_js/new_goods.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<link rel="stylesheet" type="text/css" href="css/alert_zhe.css"/>
+<script type="text/javascript" src="js/alert_zhe.js"></script>
+<!--头部--><!--手机回收-->
+<div id="big">
+<div class="recovery" >
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".new_search_btn").click(function () {
+                $(".new_search").slideToggle();
+            });
+        });
+    </script>
+    <div class="page2" style="position:relative">
+        <div class="new_search_btn" style="position:absolute; left:-40px; top:-11px; cursor:pointer;"><img
+                src="images/new_images/search_btn.png" alt="搜索您要评估价格的机型"/></div>
+        <div style="height:30px; line-height:30px; font-size:14px;">
+
+            <a href="">首页</a> &gt;<a
+                href="">手机</a> &gt;<a href=""></a> &gt;
+        </div>
+        <div class="heat_l" v-for="phone in phoneList">
+            <div class="heat_img">
+                <img src="images/iphone7.jpg" width="264" height="197"/>
+            </div>
+            <div class="heat_txt">
+                <div class="heat_name">
+                    <span>iPhone7</span>
+                </div>
+                <dl class="heat_ts">
+                    <dd><em>3360</em>元<br/>
+                        30天内回收最高价
+                    </dd>
+                    <dt class="clear"></dt>
+                </dl>
+                <div class="heat_bao">
+                    <img src="images/new_images/icon10.gif" alt="iphone 7回收免费享受第三方理赔服务"/>
+                    可免费享受第三方理赔服务
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <script src="js/new_js/morris/raphael-2.1.0.min.js"></script>
+        <script src="js/new_js/morris/morris.js"></script>
+        <link rel="stylesheet" href="js/new_js/morris/morris.css">
+        <div class="heat_r">
+            <div class="heat_title">
+                <span>回购价格趋势</span>
+                <samp>单位：元</samp></div>
+            <div class="heat_pic">
+                <div id="graph" style="width:360px; height:210px; margin-top: 0px"></div>
+            </div>
+            <script>
+                var day_data = [
+                    {"elapsed": "7", "价格": "2614"}
+                    , {"elapsed": "8", "价格": "2607"}
+                    , {"elapsed": "9", "价格": "2660"}
+                    , {"elapsed": "10", "价格": "2822"}
+                    , {"elapsed": "11", "价格": "2929"}
+                ];
+                Morris.Line({
+                    element: 'graph',
+                    data: day_data,
+                    xkey: 'elapsed',
+                    ykeys: ['价格'],
+                    labels: ['价格'],
+                    parseTime: false
+                });
+            </script>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<!--手机回收-->
+<!--评估流程-->
+<div id="ahs_trade_body">
+    <input type="hidden" id="view" value="goods_info"/>
+    <input type="hidden" id="if_show_price" value="1"/>
+    <input type="hidden" id="gid" name="gid" value="21025"/>
+    <input type="hidden" id="package_id" name="package_id" value="571"/>
+    <div id="ahs_property_head">
+        <p>开始评估你的手机，只需3步，获得产品精准评估报价</p>
+        <!--步骤一-->
+        <div class="speed" id="speed1">
+            <img src="images/new_images/step1.gif" alt="第1步评估手机的基本情况"/>
+        </div>
+        <!--步骤一-->
+        <!--步骤二-->
+        <div class="speed" id="speed2">
+            <img src="images/new_images/step2.gif" alt="第2步评估手机的功能使用情况"/>
+        </div>
+        <!--步骤二-->
+        <!--步骤三-->
+        <div class="speed" id="speed3">
+            <img src="images/new_images/step3.gif" alt="第一步评估手机的外观成色"/>
+        </div>
+        <!--步骤三-->
+    </div>
+    <div id="ahs_property_body">
+        <!--第一步-->
+        <div id="property_step1">
+            <dl>
+                <dd v-for="(phoneInfo,index) in phoneInfoList.stateParentList">
+                    <input type="hidden" name="property[]" v-bind:id="'property_'+phoneInfo.parentId" value="0"/>
+                    <div class="property_title">{{phoneInfo.parentName}}</div>
+                    <ul>
+                        <li class="" v-for="stateList in phoneInfo.stateList"
+                            v-bind:onclick="'property_click(this,'+phoneInfo.parentId+','+stateList.stateId+')'"
+                            v-bind:name="'sx_child_1'+index" v-bind:value="phoneInfo.parentId">
+                            <div class="pro_div">
+                                <span class="property_value">
+                                    <i>{{stateList.stateName}}</i>
+                                    <ins>{{stateList.stateDescribe}}</ins>
+                                </span>
+                                <span class="gou"></span>
+                            </div>
+                            <div class="clear"></div>
+                    </ul>
+                </dd>
+                <div id="step1_nav" class="property_nav">
+                    <div id="btn_step1_next" class="btn_next">下一步</div>
+                </div>
+            </dl>
+        </div>
+        <!--第一步-->
+        <!--第二步-->
+        <div id="property_step2" class="hide">
+            <dl>
+                <dd v-for="(phoneInfo2,index) in phoneInfoList2.stateParentList">
+                    <div class="property_title">
+                        <h3>{{phoneInfo2.parentName}}</h3>
+                    </div>
+                    <ul>
+                        <tempale  v-for="stateList in phoneInfo2.stateList">
+                            <!--<input type="hidden" name="desc_pid[]" value="944"/>-->
+                            <input type="hidden" name="desc_id[]" :id="'desc_id_'+stateList.stateId" value="0"/>
+                        <li v-bind:onClick="'item_click(this,'+stateList.stateId+')'" >
+                            <div class="pro_div">
+                                <span class="property_value">
+                                <i>{{stateList.stateName}}</i>
+                                <ins>{{stateList.stateDescribe}}</ins>
+                                </span>
+                                <span class="gou"></span>
+                            </div>
+                        </li>
+                        </tempale>
+                        <div class="clear"></div>
+                    </ul>
+                </dd>
+            </dl>
+            <div id="step2_nav" class="property_nav">
+                <div id="btn_step2_back" class="btn_back" v-on:click="step2_back">< 返回上一步</div>
+                <div id="btn_step2_next" class="btn_next" v-on:click="step2_next">都没问题，跳过 ></div>
+            </div>
+        </div>
+        <!--第二步-->
+        <!--第三步-->
+        <div id="property_step3" class="hide">
+            <dl>
+                <dd class="" id="pingu_mx_659" v-for="(phoneInfo3,index) in phoneInfoList3.stateParentList">
+                    <input type="hidden" name="desc_id[]" v-bind:id="'desc_id_'+phoneInfo3.stateId" value="0"/>
+                    <div class="property_title">
+                        <h3>{{phoneInfo3.parentName}}</h3>
+                    </div>
+                    <ul>
+                        <input type="hidden" name="desc_pid[]" v-bind:id="'property_'+phoneInfo3.parentId" value="0"/>
+                        <template v-for="stateList in phoneInfo3.stateList"
+                                  v-if="(phoneInfo3.parentName)!='配件'">
+                            <li class=""
+                                v-bind:onclick="'property_click(this,'+phoneInfo3.parentId+','+stateList.stateId+')'"
+                                v-bind:name="'sx_child_1'+index"
+                                v-bind:value="phoneInfo3.parentId">
+                                <div class="pro_div">
+                                        <span class="property_value">
+                                            <i>{{stateList.stateName}}</i>
+                                            <ins>{{stateList.stateDescribe}}</ins>
+                                        </span>
+                                    <span class="gou"></span>
+                                </div>
+                        </template>
+                        <template v-else>
+                            <input type="hidden" name="pj_id[]" :id="'pj_id_'+stateList.stateId" value="0"/>
+                            <li class="" v-bind:onClick="'pj_click(this,'+stateList.stateId+')'"
+                                :name="'mx_child_'+phoneInfo3.parentId">
+                                <div class="pro_div"><span class="property_value">
+                                    <i>{{stateList.stateName}}</i>
+                                    <ins>{{stateList.stateDescribe}}</ins>
+                                    </span>
+                                    <span class="gou"></span>
+                                </div>
+                        </template>
+                        <div class="clear"></div>
+                    </ul>
+                </dd>
+            </dl>
+            <div id="step3_nav" class="property_nav">
+                <div id="btn_step3_back" class="btn_back" v-on:click="step3_back">返回上一步</div>
+                <div id="btn_step3_next" class="btn_next"
+                     v-on:click="new_show_price('ajax/new_get_pg_price.html','show_price')">查看价格 >
+                </div>
+            </div>
+        </div>
+        <!--第三步-->
+    </div>
+
+<!--评估流程-->
+<!--隐藏的评估描叙选项start-->
+<div style="display:none; background-color:#ffffff;">
+</div>
+</div>
+</div>
+<!--隐藏的评估描叙选项end-->
+<script>
+    $(document).ready(function () {
+        $("#step1_nav .btn_next").bind('click', step1_next);
+        $("#step2_nav .btn_next").bind('click', step2_next);
+        $("#step2_nav .btn_back").bind('click', step2_back);
+        $("#step3_nav .btn_back").bind('click', step3_back);
+
+        $("input[name='property[]']").each(function () {
+            $(this).val(0);
+        })
+        $("#property_step1 input[name='desc_id[]']").each(function () {
+            $(this).val(0);
+        })
+        $("#property_step3 input[name='desc_id[]']").each(function () {
+            $(this).val(0);
+        })
+        $("#pj_ids").val(0);
+    });
+</script>
+<!--[if lte IE 6]>
+<script src="js/new_js/png.js" type="text/javascript"></script>
+<script type="text/javascript">
+    DD_belatedPNG.fix('img,.banner ul, li, dl, dt, dd, span, em, div, i, samp, a, b, .kuang');
+</script>
+<![endif]-->
+</body>
+</html>
+<script type="text/javascript">
+    var phoneId = window.location.href.split("?")[1].split("=")[1];
+    new Vue({
+        el:"#ahs_trade_body",
+        data: {
+            phoneInfoList: null,
+            phoneInfoList2: null,
+            phoneInfoList3: null
+        },
+        mounted(){
+            axios.get("http://localhost:8088/springmvc/oldphone/"+ phoneId +"/1")
+                 .then(response =>{this.phoneInfoList=response.data;}),
+            axios.get("http://localhost:8088/springmvc/oldphone/"+ phoneId +"/2")
+                 .then(response =>{this.phoneInfoList2=response.data;}),
+            axios.get("http://localhost:8088/springmvc/oldphone/"+ phoneId +"/3")
+                 .then(response =>{this.phoneInfoList3=response.data;})
+        }
+    });
+</script>
