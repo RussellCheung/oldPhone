@@ -77,7 +77,13 @@
             where  s.state_assessment_id=#{stateAssessmentId} and phone_id=#{phoneId}
     </select>
 
-    <select id="selectPrice" resultMap="baseResultMap3">
+    <select id="selectOnePhone" resultMap="baseResultMap1">
+          select *
+          from tb_phone
+          where phone_id=#{phoneId}
+    </select>
 
+    <select id="selectPrice" resultMap="baseResultMap3">
+             select depreciation_price from tb_depreciation where state_id=#{stateId} and depreciation_phone_id=#{depreciationPhoneId}
     </select>
 </mapper>

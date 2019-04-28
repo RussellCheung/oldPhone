@@ -98,7 +98,12 @@ function btn_step2_next_html(){
 function new_show_price(url,act,func,elem_id,ifhuanxin){
 	var property_ids	=	'',psuffix	=	'';
 	var desc_ids		=	'',dsuffix	=	'';
+    var pj_ids	=	'',psuffix	=	'';
 	var property_flag	=	true;
+    $("input[name='pj_id[]']").each(function(){
+        pj_ids	+=	psuffix+$(this).val();
+        psuffix			=	',';
+    })
 	$("input[name='property[]']").each(function(){
 		if($(this).val()==0){
 			property_flag	=	false;
@@ -113,7 +118,7 @@ function new_show_price(url,act,func,elem_id,ifhuanxin){
 	}
 	var desc_flag	=	true;
 	$("input[name='desc_id[]']").each(function(){
-		if($(this).val()==0){
+		if($(this).val()<0){
 			desc_flag	=	false;
 			return false;
 		}
@@ -132,7 +137,7 @@ function new_show_price(url,act,func,elem_id,ifhuanxin){
 	func			=	typeof(func)=='undefined'?'add':func;
 	var gid			=	$("#gid").val();
 	var package_id	=	$("#package_id").val();
-	var pj_ids		=	$("#pj_ids").val();
+	// var pj_ids		=	$("#pj_ids").val();
 	var shop_id		=	$("#shop_id").val();
 	//防止频繁操作
 	if($("#if_show_price")	==	0)	return false;
@@ -146,7 +151,7 @@ function new_show_price(url,act,func,elem_id,ifhuanxin){
 			var obj	=	eval(data);
 			if(obj[0]	==	1){
 				var key			=	obj[1];
-				var gourl		=	url.replace("ajax/new_get_pg_price","goods/show_price/"+key);
+				var gourl		=	url.replace("oldphone/price","html/price.html?phonePrice="+key);
 				location.href	=	gourl;
 				return;
 			}else{

@@ -1,4 +1,5 @@
 package com.qianfeng.mapper;
+import com.qianfeng.PO.TbDepreciation;
 import com.qianfeng.PO.TbPhone;
 import com.qianfeng.PO.TbPhoneBrand;
 import org.apache.ibatis.annotations.Mapper;
@@ -16,5 +17,8 @@ public interface BrandMapper {
 
     TbPhone selectPhoneInfo(@Param("phoneId")String phoneId,@Param("stateAssessmentId")String stateAssessmentId);
 
+    TbPhone selectOnePhone(@Param("phoneId") String phoneId);
+
+    TbDepreciation selectPrice(@Param("stateId") String stateId ,@Param("depreciationPhoneId") String depreciationPhoneId);
 
 }
